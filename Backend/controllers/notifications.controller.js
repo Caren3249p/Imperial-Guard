@@ -3,7 +3,7 @@
 
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/productos.controller');
+const controller = require('./controllers/productos.controller');
 
 router.get('/', controller.getProductos);
 router.post('/', controller.createProducto);
@@ -12,7 +12,7 @@ router.delete('/:id', controller.deleteProducto);
 
 module.exports = router;
 
-const db = require('../db');
+const db = require('../../db');
 
 exports.getNotifications = async (req, res) => {
   try {

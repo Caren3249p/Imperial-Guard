@@ -1,0 +1,4 @@
+node_modules/
+Imperial-Guard/
+.env
+*.log
