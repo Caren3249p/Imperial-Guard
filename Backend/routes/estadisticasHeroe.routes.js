@@ -19,7 +19,7 @@ router.get('/heroe/:heroeId', estadisticasHeroeController.getEstadisticasHeroe);
 router.get('/comparativa', estadisticasHeroeController.getComparativaHeroes);
 
 router.post(
-  '/equipar',
+  '/equipar', 
   authMiddleware,
   requireRole('ADMIN'),
   validate(equiparProductoSchema),
