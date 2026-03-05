@@ -1,0 +1,25 @@
+{
+  "name": "security-module",
+  "version": "2.0.0",
+  "description": "Módulo de seguridad mejorado con autenticación JWT y control de acceso por roles",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "ts-node app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.25",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.19.35",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
