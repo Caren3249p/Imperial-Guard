@@ -19,7 +19,7 @@ const createProductoSchema = z.object({
 
 const updateProductoSchema = z.object({
   nombre:      z.string().min(1).max(255).optional(),
-  descripcion: z.string().max(1000).optional(),
+  descripcion: z.string().max(1000).optional(), 
   precio:      z.number().positive().optional(),
   categoria:   z.string().min(1).max(100).optional(),
   tiraje:      z.number().int().positive().optional(),
