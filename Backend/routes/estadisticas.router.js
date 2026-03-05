@@ -1,9 +1,15 @@
-// routes/estadisticas.routes.js
 const express = require('express');
 const router = express.Router();
 const estadisticasController = require('../controllers/estadisticas.controller');
+const { authMiddleware } = require('../middlewares/auth.middleware');
+const { requireRole } = require('../middlewares/authorization.middleware');
 
-// Ruta para estadísticas del inventario
-router.get('/inventario', estadisticasController.getEstadisticasInventario);
+
+router.get(
+  '/inventario',
+  authMiddleware,
+  requireRole('ADMIN'),
+  estadisticasController.getEstadisticasInventario
+);
 
 module.exports = router;
