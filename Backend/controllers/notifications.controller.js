@@ -1,29 +1,20 @@
 
-//es el crud de notificaciones//
+const { GetNotificationsUseCase } = require('../../../application/usecases/getNotifications.usecase');
 
-const express = require('express');
-const router = express.Router();
-const controller = require('./controllers/productos.controller');
+let getNotificationsUseCase;
 
-router.get('/', controller.getProductos);
-router.post('/', controller.createProducto);
-router.put('/:id', controller.updateProducto);
-router.delete('/:id', controller.deleteProducto);
-
-module.exports = router;
-
-const db = require('../../db');
+const init = (notificationsRepository) => {
+  getNotificationsUseCase = new GetNotificationsUseCase(notificationsRepository);
+};
 
 exports.getNotifications = async (req, res) => {
   try {
-    const [rows] = await db.query(`
-      SELECT n.*, t.name as type_name
-      FROM notifications n
-      JOIN notification_types t ON n.type_id = t.id
-    `);
-
-    res.json(rows);
+    const notifications = await getNotificationsUseCase.execute();
+    res.json(notifications);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
+exports.init = init;
