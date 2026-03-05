@@ -1,15 +1,11 @@
-const db = require('../db');
+const express = require('express');
+const router = express.Router();
+const notificationsController = require('../controllers/notifications.controller');
+const { authMiddleware } = require('../middlewares/auth.middleware');
+// TODO: Agregar schema Zod cuando se definan parámetros de entrada para este endpoint.
 
-exports.getNotifications = async (req, res) => {
-  try {
-    const [rows] = await db.query(`
-      SELECT n.*, t.name as type_name
-      FROM notifications n
-      JOIN notification_types t ON n.type_id = t.id
-    `);
+// GET /api/v1/notifications
+// Auth: JWT requerido — las notificaciones son datos del usuario autenticado.
+router.get('/', authMiddleware, notificationsController.getNotifications);
 
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+module.exports = router;
