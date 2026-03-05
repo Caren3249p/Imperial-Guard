@@ -1,18 +1,9 @@
-// routes/estadisticasHeroe.routes.js
+// routes/estadisticas.routes.js
 const express = require('express');
 const router = express.Router();
-const estadisticasHeroeController = require('../controllers/estadisticasHeroe.controller');
+const estadisticasController = require('../controllers/estadisticas.controller');
 
-// Obtener lista de héroes
-router.get('/heroes', estadisticasHeroeController.getHeroes);
-
-// Obtener estadísticas detalladas de un héroe específico
-router.get('/heroe/:heroeId', estadisticasHeroeController.getEstadisticasHeroe);
-
-// Obtener comparativa entre todos los héroes
-router.get('/comparativa', estadisticasHeroeController.getComparativaHeroes);
-
-// Equipar/desequipar producto a héroe
-router.post('/equipar', estadisticasHeroeController.equiparProducto);
+// Ruta para estadísticas del inventario
+router.get('/inventario', estadisticasController.getEstadisticasInventario);
 
 module.exports = router;
